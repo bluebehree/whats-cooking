@@ -108,7 +108,33 @@ To better understand the data, we can take a look at the distribution of cuisine
 \noindent
 We see that our training data is unbalanced, as there are much more "italian" and "mexican" cuisines that any of the other cuisines. This is why we decided to use the $F_1$-score as our evaluation metric, as the $F_1$-score will take into account both precision and recall.
 
-We can also take a closer look at our ingredients. We have 6714 kinds of distinct ingredients, and a good number of them are common to different recipes and cuisines.
+We can also take a closer look at our ingredients. We have 6714 kinds of distinct ingredients, and there are a few ingredients in particular that are more common than the rest:
+
+\begin{figure}[!h]
+\includegraphics[width=\textwidth, height=10cm]{10-most-common-ingredients.png}
+\caption{10 most common ingredients}
+\label{fig:common-ingredients}
+\end{figure}
+
+We can see that a good number of ingredients are common to many different recipes and cuisines. In particular, ingredients such as \textit{salt}, \textit{olive oil}, \textit{onions}, and \textit{water} are very common, and this makes sense. \textit{Salt} is one of the ingredients that improves the flavor of a recipe, \textit{olive oil} allows for a better transfer of heat for cooking, and so on. All of the ingredients shown in Figure \ref{fig:common-ingredients} are essential to cooking, and it really captures the ingredients that most cuisines have in their dishes.
+
+One important point to mention is that some ingredients are very similar to each other in both name and in usage. For example, let's take a look at \textit{garlic} and \textit{garlic cloves}. They are both \textit{garlic} ingredients, and mainly serve the same purpose in a dish. Other examples include \textit{eggs} and \textit{large eggs}, as well as \textit{ground black pepper} and \textit{black pepper}. Thus, we will combine these ingredients into one homogenous ingredient.
+
+Since the ingredients mentioned above are common to many cuisines, they may not be very helpful for distinguishing one cuisine from another. We can filter out the most common ingredients from the ingredients used in \textit{Italian} and \textit{Mexican} dishes and see what they tells us:
+
+\begin{figure}
+\includegraphics[width=\textwidth, height=10cm]{italian-most-common-ingredients.png}
+\caption{Italian: 10 most common ingredients}
+\label{fig: italian-most-common-ingredients}
+\end{figure}
+
+\begin{figure}
+\includegraphics[width=\textwidth, height=10cm]{mexican-most-common-ingredients.png}
+\caption{Mexican: 10 most common ingredients}
+\label{fig: mexican-most-common-ingredients}
+\end{figure}
+
+Once we filtered out the most common ingredients, we can see the ingredients that are representative of their respective cuisines, as evidenced in figures \ref{fig: italian-most-common-ingredients} and \ref{fig: mexican-most-common-ingredients}. These are the ingredients that will distinguish a certain cuisine from another cuisine, and we will be focusing on extracting these ingredients in our data preprocessing.
 
 \subsection{Algorithms and Techniques}
 This is a classification problem, and so I will be using algorithms and techniques that are suited for classification problems. In particular, I will be using the following models/algorithms:
