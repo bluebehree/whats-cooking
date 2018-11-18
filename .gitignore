@@ -1,3 +1,5 @@
+.ipynb_checkpoints/
+
 data-set/*
 !data-set/test.json
 !data-set/train.json
