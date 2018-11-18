@@ -1,11 +1,7 @@
-# Machine Learning Engineer Nanodegree
-## Specializations
-## Project: Capstone Proposal and Capstone Project
+# What's Cooking?
 
-**Note**
+A model that uses the recipe ingredients to classify the cuisine of a dish.
 
-The Capstone is a two-staged project. The first is the proposal component, where you can receive valuable feedback about your project idea, design, and proposed solution. This must be completed prior to your implementation and submitting for the capstone project. 
-
-You can find the [capstone proposal rubric here](https://review.udacity.com/#!/rubrics/410/view), and the [capstone project rubric here](https://review.udacity.com/#!/rubrics/108/view). Please ensure that you are following directions correctly before submitting these two stages which encapsulate your capstone.
-
-Please email [machine-support@udacity.com](mailto:machine-support@udacity.com) if you have any questions.
+## Libraries Used
+1. [nltk](http://www.nltk.org)
+2. [scikit-learn](http://scikit-learn.org/stable)
