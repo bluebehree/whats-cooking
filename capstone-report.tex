@@ -1,0 +1,106 @@
+\documentclass[12pt]{article}
+
+\newcommand{\cnum}{\textbf{Capstone Project}}
+\newcommand{\ctitle}[3]{\title{\vspace{-0.5in}\cnum\\#2\vspace{-1ex}}}
+\usepackage{enumitem}
+\usepackage{amsmath}
+\usepackage[usenames,dvipsnames,svgnames,table,hyperref]{xcolor}
+\usepackage{titlesec}
+\usepackage{graphicx}
+\usepackage[hang,flushmargin,bottom]{footmisc}
+\graphicspath{}
+
+\setlength{\footnotemargin}{3mm}
+\setlength{\skip\footins}{0.5cm}
+\setlength{\footnotesep}{0.3cm}
+
+\renewcommand*{\theenumi}{\alph{enumi}}
+\renewcommand*\labelenumi{(\theenumi)}
+\renewcommand*{\theenumii}{\roman{enumii}}
+\renewcommand*\labelenumii{\theenumii.}
+
+
+\begin{document}
+\ctitle{0}{Machine Learning Engineer Nanodegree}{}
+\author{Albert Pan}
+\date{\vspace{-2ex}November 11, 2018}
+\maketitle
+
+\section{Definition}
+\subsection{Project Overview}
+
+Food plays a major part in any culture around the world. In fact, the geographical characteristics and cultural associations of a region directly influence their cuisines. By investigating the ingredients used in various cuisines, we can gain a better understanding of the geographical and cultural landscape of different regions.
+
+Han Su et. al.\footnote{Su, Han \& Lin, Ting-Wei \& Li, C.-T \& Shan, Man-Kwan \& Chang, Janet. (2014). Automatic recipe cuisine classification by ingredients. UbiComp 2014 - Adjunct Proceedings of the 2014 ACM International Joint Conference on Pervasive and Ubiquitous Computing. 565-570. 10.1145/2638728.2641335.} has worked on investigating if recipe cuisines could be identified by their ingredients, using data from food.com. They treated each ingredient as a feature and examined the common ingredients for each cuisine. Their study provides good insight on how to approach this project and what results we could expect to achieve.
+
+For this project, we can use machine learning techniques to attain useful predictions with our data. This project will give me an opportunity to work with real-world datasets and to learn about the relation between ingredients and cuisines. This kind of research can be expanded to other fields of study involving text classification.
+
+\subsection{Problem Statement}
+Using the data provided by Yummly\footnote{https://www.kaggle.com/c/whats-cooking-kernels-only/data}, the challenge is to predict the cuisine of the dish from its list of ingredients. More specifically, this would be multi-class classfication problem, as we have 20 different cuisines we can predict. We can use a machine learning model that utilizes this data to predict the appropriate cuisine.
+\newline
+\newline
+%
+My strategy for solving this problem is as follows:
+\begin{enumerate}[label*=\arabic*.]
+\item Download data from Kaggle
+\item Explore data with visualizations
+\item Preprocess data and extract features
+\item Train and test model
+\item Tune hyperparameters
+\end{enumerate}
+
+\subsection{Metrics}
+As previously mentioned, our training data seems to be unbalanced, and thus I will be using the $F_1$-score to evaluate the model. The $F_1$-score is the weighted average of the precision and recall, and can be expressed mathematically with the following form:
+
+\begin{equation}
+F_1 = 2 \cdot \frac{precision \cdot recall}{precision+recall}
+\end{equation}
+%
+We can also take a look at the precision and recall metrics on their own. Precision can be expressed with the following equation, where $dish_x$ is a dish of a particular cuisine $x$:
+
+\begin{equation}
+precision = \frac{\textit{$dish_x\: correct$}}{\textit{$total\: dish_x$}}
+\end{equation}
+%
+where $dish_x\: correct$ is the number of dishes of cuisine $x$ that are correctly classified as $x$, and $total\: dish_x$ is the the total number of dishes that were classified as $x$.
+\newline
+\newline
+%
+Recall can expressed with:
+
+\begin{equation}
+recall = \frac{\textit{$dish_x\: correct$}}{\textit{$dish_x\: correct$} + \textit{$dish_x\: incorrect$}}
+\end{equation}
+%
+where $dish_x\: correct$ is the number of dishes of cuisine $x$ that are correctly classified as $x$, and $dish_x\: incorrect$ is the number of dishes of cuisine $x$ that are incorrectly classified.
+
+\section{Analysis}
+\subsection{Data Exploration}
+
+\subsection{Exploratory Visualization}
+
+\subsection{Algorithms and Techniques}
+
+\subsection{Benchmark}
+For our baseline benchmark, we can use the metric obtained by predicting the most common cuisine in the training and testing datasets. The most common cuisine is \textit{Italian}, and our benchmark model will predict Italian to all recipes. This would give us a benchmark $F_1$-score of $0.3292$.
+
+\section{Methodology}
+\subsection{Data Preprocessing}
+
+\subsection{Implementation}
+
+\subsection{Refinement}
+
+\section{Results}
+\subsection{Model Evaluation and Validation}
+
+\subsection{Justification}
+
+\section{Conclusion}
+\subsection{Free-Form Visualization}
+
+\subsection{Reflection}
+
+\subsection{Improvement}
+
+\end{document}
