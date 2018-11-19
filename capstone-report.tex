@@ -12,6 +12,9 @@
 \restylefloat{table}
 \graphicspath{ {figures/} }
 
+\newlist{legal}{enumerate}{10}
+\setlist[legal]{label*=\arabic*.}
+
 \setlength{\footnotemargin}{3mm}
 \setlength{\skip\footins}{0.5cm}
 \setlength{\footnotesep}{0.3cm}
@@ -152,10 +155,33 @@ For our baseline benchmark, we can use the metric obtained by predicting the mos
 
 \section{Methodology}
 \subsection{Data Preprocessing}
+Our training dataset is divided into \textit{ingredients} and \textit{cuisine}. \textit{cuisine} is already ready for implementation. What we do have to do is preprocess each recipe's ingredients and uniformly format them. We will perform the following steps to preprocess the data:
+
+\begin{legal}
+	\item Remove non-letter characters (punctuation) using regular expressions.
+	\item Convert all letters to lowercase.
+	\item Remove descriptor words (e.g. chopped, minced, toasted, etc.) and combined similar ingredients into homogenous groups.
+	\item Apply a lemmatization process to the words.	
+	\item Convert words to vectors using tf-idf.
+\end{legal}
+
+\noindent
+Lemmatization refers to the process of grouping together different inflected forms of words so that they can be analyzed as a single term\footnote{https://en.wikipedia.org/wiki/Lemmatisation}. This means that words such as \textit{tomatoes} will be transformed into \textit{tomato}, thus allowing us to treat them as the same term. I used \textit{nltk}'s WordNetLemmatizer\footnote{https://www.nltk.org/\_modules/nltk/stem/wordnet.html} to perform lemmatization on our ingredients.
+
+tf-idf is a method in which you can extract information from a string. It evaluates the weight of the value of words according to the number of times that it appears in a text and offsets it by the number of times it appears in the entire corpus. In our problem, tf-idf seems to work well because the number of times an ingredient appears in the recipe of a particular cuisine could help us determine if that specific ingredient is indicative to that cuisine. We will use the output of \textit{scikit-learn}'s TfidfVectorizer\footnote{https://scikit-learn.org/stable/modules/generated/sklearn.feature\_extraction.text.TfidfVectorizer.html} to obtain the count matrix that we will use as input for our model.
+
+We will also convert our \textit{cuisine} class to integer representation using \textit{scikit-learn}'s label encoder\footnote{https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.LabelEncoder.html} so that the model can recognize our target class.
 
 \subsection{Implementation}
+We did not change our evaluation metric ($F_1$-score), as it works well in our case since we have an uneven distribution of data.
+
+The supervised learning algorithms that we used were initialized with the default parameters. All of the models are from the \textit{scikit-learn} library, with the exception of the XGBClassifier, which is from the \textit{xgboost} library.
+
+The test data can only be evaluated on the Kaggle competition, and so we split our training data into 70\% training and 30\% testing.
 
 \subsection{Refinement}
+
+We trained all of the models and got their training and testing scores. To refine the models, we tuned their hyper-parameters using \textit{scikit-learn}'s GridSearchCV\footnote{https://scikit-learn.org/stable/modules/generated/sklearn.model\_selection.GridSearchCV.html}. GridSearchCV allows us to perform an exhaustive search over all the hyper-parameters that we specify in a 5-fold cross-validated dataset. We then used the optimized classifiers and re-evaluated their performances.
 
 \section{Results}
 \subsection{Model Evaluation and Validation}
